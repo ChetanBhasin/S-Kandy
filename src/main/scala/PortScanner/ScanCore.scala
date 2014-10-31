@@ -12,7 +12,7 @@ object ScanCore {
   private[PortScanner] def scanForPorts(IP: String) = {
 
     // Defining the personal concurrent execution context thread pool
-    implicit val ec = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(200))
+    implicit val ec = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(1000))
 
     // Main result value to store the data into
     val result = Future.traverse(1 to 6335) {
@@ -29,7 +29,7 @@ object ScanCore {
 
     // Returns a vector of all available ports asynchronously
     Try {
-      Await.result(result, 30 seconds)
+      Await.result(result, 10 seconds)
     }.toOption.getOrElse(Nil).flatten
   }
 
