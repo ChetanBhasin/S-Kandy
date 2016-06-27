@@ -28,4 +28,4 @@ buildOptions in docker := BuildOptions(
 // Add SBT flags for preventing error
 scalacOptions ++= Seq("-deprecation", "-feature")
 
-
+resolvers += Resolver.url("sbt-plugin-snapshots", new URL("http://repo.scala-sbt.org/scalasbt/sbt-plugin-snapshots/"))(Resolver.ivyStylePatterns)
